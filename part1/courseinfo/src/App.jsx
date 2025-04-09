@@ -1,60 +1,88 @@
 const App = () => {
+  // const course = "Half Stack application development";
+
+  // const content = {
+  //   part1: {
+  //     part: "Fundamentals of React",
+  //     exercises: 10,
+  //   },
+  //   part2: {
+  //     part: "Using props to pass data",
+  //     exercises: 7,
+  //   },
+  //   part3: {
+  //     part: "State of a component",
+  //     exercises: 14,
+  //   },
+  // };
+
   const course = {
-    name: 'Half Stack application development',
+    name: "Half Stack application development",
     parts: [
       {
-        name: 'Fundamentals of React',
-        exercises: 10
+        name: "Fundamentals of React",
+        exercises: 10,
       },
       {
-        name: 'Using props to pass data',
-        exercises: 7
+        name: "Using props to pass data",
+        exercises: 7,
       },
       {
-        name: 'State of a component',
-        exercises: 14
-      }
-    ]
-  }
+        name: "State of a component",
+        exercises: 14,
+      },
+    ],
+  };
 
   return (
     <div>
-      <Header course={course}/>
-      <Content course={course}/>
-      <Total course={course} />
+      <Header courseProp={course.name} />
+      <Content contentProp={course.parts} />
+      <Total exercisesProp={course.parts} />
     </div>
-  )
-}
+  );
+};
 
-const Total = ({course}) => {
-  // console.log(course.parts[0].exercises)
-  return(
-    <p>Number of exercises {course.parts[0].exercises + course.parts[1].exercises + course.parts[2].exercises}</p>
-  )
-}
+const Header = ({ courseProp }) => {
+  console.log(courseProp);
+  return (
+    <>
+      <h1>{courseProp}</h1>
+    </>
+  );
+};
 
-const Content = ({course}) => {
-  return(
-    <div>
-      <Part part={course.parts[0].name} exercise={course.parts[0].exercises} />
-      <Part part={course.parts[1].name} exercise={course.parts[1].exercises} />
-      <Part part={course.parts[2].name} exercise={course.parts[2].exercises} />
-    </div>
-  )
-}
+const Part = ({ partProp }) => {
+  return (
+    <>
+      <p>
+        {partProp.name} {partProp.exercises}
+      </p>
+    </>
+  );
+};
 
-const Part = ({part,exercise}) => {
-  return(
-    <p>
-        {part} {exercise}
-    </p>
-  )
-}
+const Content = ({ contentProp }) => {
+  console.log(contentProp[0]);
+  return (
+    <>
+      <Part partProp={contentProp[0]} />
+      <Part partProp={contentProp[1]} />
+      <Part partProp={contentProp[2]} />
+    </>
+  );
+};
 
-const Header = ({course}) => {
-  return(
-    <h1>{course.name}</h1>
-  )
-}
+const Total = ({ exercisesProp }) => {
+  const exercises1 = exercisesProp[0].exercises;
+  const exercises2 = exercisesProp[1].exercises;
+  const exercises3 = exercisesProp[2].exercises;
+  // prompt("testing");
+  return (
+    <>
+      <p>Number of exercises {exercises1 + exercises2 + exercises3}</p>
+    </>
+  );
+};
 
-export default App
+export default App;

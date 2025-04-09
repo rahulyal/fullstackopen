@@ -1,0 +1,2 @@
+# Ignore .vscode folder for Deno projects
+.vscode/
